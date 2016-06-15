@@ -7,7 +7,6 @@ var playerTwoTotalScore = 0;
 var dieRoll = 0;
 var turnScore = 0;
 var playerOne = true;
-var playerTwo = false;
 
 //create player objects
 // function Player(totalScore, turnScore, dieRoll) {
@@ -33,15 +32,15 @@ function turnScoreGenerator(dieRoll) {
 }
 
 function totalScoreGenerator(turnScore) {
-  if (playerOne = true) {
+  if (playerOne === true) {
     playerOneTotalScore = playerOneTotalScore + turnScore;
     return playerOneTotalScore;
-  } else if (playerTwo = true) {
+  } else {
     playerTwoTotalScore = playerTwoTotalScore + turnScore;
     return playerTwoTotalScore;
-  } else {
-    alert("totalScoreGenerator is broken");
-  }
+  }    return playerTwoTotalScore;
+  console.log(playerTwoTotalScore);
+
 }
 
 // front-end logic
@@ -56,27 +55,27 @@ $(document).ready(function() {
 
     // var playerOne = new Player(totalScore, turnScore, dieRoll);
     // var playerTwo = new Player(totalScore, turnScore, dieRoll);
-    if (playerOne = true) {
+    if (playerOne === true) {
       $("#p1-turn-total").text(turnScore);
-    } else if (playerTwo = false) {
+    } else {
       $("#p2-turn-total").text(turnScore);
-    } else alert("Broken boolean turn total");
-
+    }
 
   });
 
   $("#hold-button").click(function(event) {
     event.preventDefault();
 
-    if (playerOne = true) {
-      var totalScore = totalScoreGenerator(turnScore);
-      $("#p1-score-total").text(totalScore);
+    if (playerOne === true) {
+      playerOneTotalScore = totalScoreGenerator(turnScore);
+      $("#p1-score-total").text(playerOneTotalScore);
       playerOne = false;
+      console.log(playerOne)
     }
-    else if (playerTwo = true) {
-      var totalScore = totalScoreGenerator(turnScore);
-      $("#p2-score-total").text(totalScore);
-      playerTwo = false;
+    else {
+      playerTwoTotalScore = totalScoreGenerator(turnScore);
+      $("#p2-score-total").text(playerTwoTotalScore);
+      playerOne = true;
     }
 
     turnScore = 0;
