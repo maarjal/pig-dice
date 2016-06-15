@@ -57,10 +57,18 @@ $(document).ready(function() {
     if (playerTurn === true) {
       playerOneTotalScore = totalScoreGenerator(turnScore);
       $("#p1-score-total").text(playerOneTotalScore);
+      if (playerOneTotalScore >= 100) {
+        alert("Congrats, you won!");
+        location.reload();
+      }
       playerTurn = false;
     } else {
       playerTwoTotalScore = totalScoreGenerator(turnScore);
       $("#p2-score-total").text(playerTwoTotalScore);
+      if (playerTwoTotalScore >= 100) {
+        alert("Congrats, you won!");
+        location.reload();
+      }
       playerTurn = true;
     }
     turnScore = 0;
