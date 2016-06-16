@@ -122,8 +122,12 @@ $(document).ready(function() {
     $("#p2-dieRoll").text(playerTwo.dieRoll);
     if (playerOne.activePlayer === true) {
       $("#p1-header").addClass("header-color");
+      showImg(playerOne.dieRoll);
+      $("#gameStarterOne").show();
     } else {
       $("#p2-header").addClass("header-color");
+      showImg(playerTwo.dieRoll);
+      $("#gameStarterTwo").show();
     }
     $("#play-button").hide();
   });
@@ -131,12 +135,14 @@ $(document).ready(function() {
   $("#roll-button").click(function(event) {
     event.preventDefault();
     if (playerOne.activePlayer === true) {
+      $("#gameStarterOne").hide();
       playerOne.randomDieRoller();
       showImg(playerOne.dieRoll);
       playerOne.turnScoreGenerator();
       $("#p1-dieRoll").text(playerOne.dieRoll);
       $("#p1-turn-score").text(playerOne.turnScore);
     } else if (playerTwo.activePlayer === true) {
+      $("#gameStarterTwo").hide();
       playerTwo.randomDieRoller();
       showImg(playerTwo.dieRoll);
       playerTwo.turnScoreGenerator();
