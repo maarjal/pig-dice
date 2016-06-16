@@ -30,3 +30,12 @@ button {
 .header-color {
   color: green;
 }
+
+.dice-img {
+  width: 350px;
+  height: 350px;
+  display: block;
+  /*margin-left: 50%;
+  margin-right: 50%;*/
+  margin: 50px;
+}
