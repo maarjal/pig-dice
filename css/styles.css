@@ -27,6 +27,12 @@ button {
   color: red;
 }
 
+#gameStarterOne, #gameStarterTwo {
+  display: none;
+  text: center;
+  color: hotpink;
+}
+
 .header-color {
   color: green;
 }
@@ -35,7 +41,5 @@ button {
   width: 350px;
   height: 350px;
   display: block;
-  /*margin-left: 50%;
-  margin-right: 50%;*/
   margin: 50px;
 }
