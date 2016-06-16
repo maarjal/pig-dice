@@ -60,7 +60,7 @@ Player.prototype.playerStart = function() {
       playerOne.activePlayer = false;
       playerTwo.activePlayer = true;
   } else {
-    alert("Redo");
+    playerOne.playerStart();
   }
 }
 
