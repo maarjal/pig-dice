@@ -50,17 +50,14 @@ $(document).ready(function() {
     if (playerOne.activePlayer === true) {
       playerOne.randomDieRoller();
       playerOne.turnScoreGenerator();
-      $("#roll-result").text(playerOne.dieRoll);
-      $("#p1-turn-total").text(playerOne.turnScore);
+      $("#p1-dieRoll").text(playerOne.dieRoll);
+      $("#p1-turn-score").text(playerOne.turnScore);
     } else if (playerTwo.activePlayer === true) {
       playerTwo.randomDieRoller();
       playerTwo.turnScoreGenerator();
-      $("#roll-result").text(playerTwo.dieRoll);
-      $("#p2-turn-total").text(playerTwo.turnScore);
+      $("#p2-dieRoll").text(playerTwo.dieRoll);
+      $("#p2-turn-score").text(playerTwo.turnScore);
     }
-    console.log(playerOne);
-    console.log(playerTwo);
-
   });
 
   $("#hold-button").click(function(event) {
@@ -68,11 +65,22 @@ $(document).ready(function() {
 
     if (playerOne.activePlayer === true) {
       playerOne.totalScoreGenerator();
-    }
-
-
+      $("#p1-total-score").text(playerOne.totalScore);
+      if (playerOne.totalScore >= 100) {
+        $("#p1-winner").show();
+        $("#p2-looser").show();
+      }
+      playerOne.playerSwitch();
+    } else if (playerTwo.activePlayer === true) {
+      playerTwo.totalScoreGenerator();
+      $("#p2-total-score").text(playerTwo.totalScore);
+      if (playerTwo.totalScore >= 100) {
+        $("#p2-winner").show();
+        $("#p1-looser").show();
+      }
+      playerTwo.playerSwitch();
+    } else alert("totalScoreGenerator Broken!");
   });
-
 });
 
 

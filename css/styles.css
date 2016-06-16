@@ -5,8 +5,24 @@ h1 {
 
 body {
   font-family: 'Press Start 2P', cursive;
+  font-size: 50%;
 }
 
 button {
   margin: 20px;
+}
+
+#p1-winner, #p1-looser,
+#p2-winner, #p2-looser {
+  display: none;
+}
+
+#p1-winner,
+#p2-winner {
+  color: green;
+}
+
+#p1-looser,
+#p2-looser {
+  color: red;
 }
