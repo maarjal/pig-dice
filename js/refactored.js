@@ -19,6 +19,7 @@ Player.prototype.randomDieRoller = function() {
 Player.prototype.turnScoreGenerator = function() {
   if (this.dieRoll === 1) {
     this.turnScore = 0;
+    $(".header-color").removeClass();
     this.playerSwitch();
   }
   else {
@@ -43,16 +44,18 @@ Player.prototype.playerSwitch = function() {
   }
 }
 
+//ui logic
 $(document).ready(function() {
   $("#roll-button").click(function(event) {
     event.preventDefault();
-
     if (playerOne.activePlayer === true) {
+      $("#p1-header").addClass("header-color");
       playerOne.randomDieRoller();
       playerOne.turnScoreGenerator();
       $("#p1-dieRoll").text(playerOne.dieRoll);
       $("#p1-turn-score").text(playerOne.turnScore);
     } else if (playerTwo.activePlayer === true) {
+      $("#p2-header").addClass("header-color");
       playerTwo.randomDieRoller();
       playerTwo.turnScoreGenerator();
       $("#p2-dieRoll").text(playerTwo.dieRoll);
@@ -62,7 +65,7 @@ $(document).ready(function() {
 
   $("#hold-button").click(function(event) {
     event.preventDefault();
-
+      $(".header-color").removeClass();
     if (playerOne.activePlayer === true) {
       playerOne.totalScoreGenerator();
       $("#p1-total-score").text(playerOne.totalScore);
@@ -82,6 +85,3 @@ $(document).ready(function() {
     } else alert("totalScoreGenerator Broken!");
   });
 });
-
-
-//ui logic
