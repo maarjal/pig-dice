@@ -36,26 +36,61 @@ Player.prototype.totalScoreGenerator = function() {
 // switch prototype
 Player.prototype.playerSwitch = function() {
   if (playerOne.activePlayer === true) {
+    $(".header-color").removeClass();
+    $("#p2-header").addClass("header-color");
     playerOne.activePlayer = false;
     playerTwo.activePlayer = true;
   } else {
     playerOne.activePlayer = true;
     playerTwo.activePlayer = false;
+    $(".header-color").removeClass();
+    $("#p1-header").addClass("header-color");
+  }
+}
+
+Player.prototype.playerStart = function() {
+  playerOne.randomDieRoller();
+  playerTwo.randomDieRoller();
+
+  if (playerOne.dieRoll > playerTwo.dieRoll) {
+    playerOne.activePlayer = true;
+    playerTwo.activePlayer = false;
+  }
+  else if (playerOne.dieRoll < playerTwo.dieRoll) {
+      playerOne.activePlayer = false;
+      playerTwo.activePlayer = true;
+  } else {
+    alert("Redo");
   }
 }
 
 //ui logic
 $(document).ready(function() {
+  $("#play-button").click(function(event) {
+    event.preventDefault();
+
+    playerOne.playerStart();
+
+    $("#p1-dieRoll").text(playerOne.dieRoll);
+    $("#p2-dieRoll").text(playerTwo.dieRoll);
+    if (playerOne.activePlayer === true) {
+      $("#p1-header").addClass("header-color");
+    } else {
+      $("#p2-header").addClass("header-color");
+    }
+    console.log(playerOne.activePlayer);
+  });
+
   $("#roll-button").click(function(event) {
     event.preventDefault();
     if (playerOne.activePlayer === true) {
-      $("#p1-header").addClass("header-color");
+      // $("#p1-header").addClass("header-color");
       playerOne.randomDieRoller();
       playerOne.turnScoreGenerator();
       $("#p1-dieRoll").text(playerOne.dieRoll);
       $("#p1-turn-score").text(playerOne.turnScore);
     } else if (playerTwo.activePlayer === true) {
-      $("#p2-header").addClass("header-color");
+      // $("#p2-header").addClass("header-color");
       playerTwo.randomDieRoller();
       playerTwo.turnScoreGenerator();
       $("#p2-dieRoll").text(playerTwo.dieRoll);
@@ -65,8 +100,10 @@ $(document).ready(function() {
 
   $("#hold-button").click(function(event) {
     event.preventDefault();
-      $(".header-color").removeClass();
+
     if (playerOne.activePlayer === true) {
+      $(".header-color").removeClass();
+      $("#p2-header").addClass("header-color");
       playerOne.totalScoreGenerator();
       $("#p1-total-score").text(playerOne.totalScore);
       if (playerOne.totalScore >= 100) {
@@ -75,6 +112,8 @@ $(document).ready(function() {
       }
       playerOne.playerSwitch();
     } else if (playerTwo.activePlayer === true) {
+      $(".header-color").removeClass();
+      $("#p1-header").addClass("header-color");
       playerTwo.totalScoreGenerator();
       $("#p2-total-score").text(playerTwo.totalScore);
       if (playerTwo.totalScore >= 100) {

@@ -36,6 +36,11 @@ function totalScoreGenerator(turnScore) {
 
 // front-end logic
 $(document).ready(function() {
+  $("#play-button").click(function(event) {
+    event.preventDefault();
+    
+  });
+
   $("#roll-button").click(function(event) {
     event.preventDefault();
 
